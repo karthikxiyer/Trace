@@ -1,4 +1,4 @@
-const API_BASE = 'http://localhost:3001/api';
+const API_BASE = 'https://trace-87d0.onrender.com/api';
 
 const loginView = document.getElementById('login-view');
 const saveView  = document.getElementById('save-view');

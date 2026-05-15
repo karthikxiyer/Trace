@@ -1,4 +1,4 @@
-const API_BASE = 'http://localhost:3001/api';
+const API_BASE = 'https://trace-87d0.onrender.com/api';
 
 // Handle Alt+Shift+S keyboard shortcut — saves current tab silently
 chrome.commands.onCommand.addListener(async (command) => {
