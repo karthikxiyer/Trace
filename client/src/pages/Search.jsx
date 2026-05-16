@@ -17,7 +17,7 @@ export default function Search() {
 
   if (!q) {
     return (
-      <div className="text-center py-20 text-gray-400">
+      <div className="text-center py-20 text-neutral-400">
         <p className="text-sm">Start typing to search your links.</p>
       </div>
     );
@@ -25,24 +25,24 @@ export default function Search() {
 
   return (
     <div>
-      <p className="text-sm text-gray-500 mb-4">
-        Results for <strong className="text-gray-700">"{q}"</strong>
+      <p className="text-xs text-neutral-400 mb-4 uppercase tracking-widest">
+        Results for <span className="text-neutral-700 font-medium normal-case tracking-normal">"{q}"</span>
       </p>
 
       {isLoading && (
-        <div className="space-y-3">
+        <div className="space-y-2.5">
           {[...Array(3)].map((_, i) => <SkeletonCard key={i} />)}
         </div>
       )}
 
       {!isLoading && data?.results?.length === 0 && (
-        <div className="text-center py-20 text-gray-400">
+        <div className="text-center py-20 text-neutral-400">
           <p className="text-sm">No results found.</p>
         </div>
       )}
 
       {!isLoading && data?.results?.length > 0 && (
-        <div className="space-y-3">
+        <div className="space-y-2.5">
           {data.results.map(link => <LinkCard key={link.id} link={link} />)}
         </div>
       )}

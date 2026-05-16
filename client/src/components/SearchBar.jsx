@@ -1,12 +1,11 @@
 import { useState, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 
-export default function SearchBar() {
+export default function SearchBar({ autoFocus, className }) {
   const [value, setValue] = useState('');
   const navigate = useNavigate();
   const location = useLocation();
 
-  // Sync input with URL on page load if already on /search
   useEffect(() => {
     if (location.pathname !== '/search') setValue('');
   }, [location.pathname]);
@@ -28,7 +27,8 @@ export default function SearchBar() {
       value={value}
       onChange={e => setValue(e.target.value)}
       placeholder="Search links…"
-      className="w-64 px-3 py-1.5 text-sm border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 bg-gray-50"
+      autoFocus={autoFocus}
+      className={`px-3 py-1.5 text-sm border border-neutral-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-neutral-900 bg-neutral-50 placeholder:text-neutral-400 ${className ?? 'w-64'}`}
     />
   );
 }

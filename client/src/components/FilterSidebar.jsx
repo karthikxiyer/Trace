@@ -38,47 +38,47 @@ export default function FilterSidebar() {
   const hasActiveFilters = activeTag || starred || unread || onArchive;
 
   return (
-    <aside className="w-48 shrink-0 pr-6">
+    <aside className="w-44 shrink-0">
       <div className="space-y-6">
         <div>
-          <p className="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-2">Filters</p>
-          <div className="space-y-1">
-            <button
+          <p className="text-[11px] font-semibold text-neutral-400 uppercase tracking-widest mb-2">Filters</p>
+          <div className="space-y-0.5">
+            <NavBtn
+              label="All links"
+              active={onFeed && !hasActiveFilters}
               onClick={() => { navigate('/'); setSearchParams({}); }}
-              className={`w-full text-left px-3 py-1.5 rounded-lg text-sm ${onFeed && !hasActiveFilters ? 'bg-indigo-50 text-indigo-700 font-medium' : 'text-gray-600 hover:bg-gray-100'}`}
-            >
-              All links
-            </button>
-            <button
+            />
+            <NavBtn
+              label="★  Starred"
+              active={starred}
               onClick={() => setFilter('starred', starred ? null : 'true')}
-              className={`w-full text-left px-3 py-1.5 rounded-lg text-sm ${starred ? 'bg-indigo-50 text-indigo-700 font-medium' : 'text-gray-600 hover:bg-gray-100'}`}
-            >
-              ★ Starred
-            </button>
-            <button
+            />
+            <NavBtn
+              label="○  Unread"
+              active={unread}
               onClick={() => setFilter('unread', unread ? null : 'true')}
-              className={`w-full text-left px-3 py-1.5 rounded-lg text-sm ${unread ? 'bg-indigo-50 text-indigo-700 font-medium' : 'text-gray-600 hover:bg-gray-100'}`}
-            >
-              ○ Unread
-            </button>
-            <button
+            />
+            <NavBtn
+              label="Archive"
+              active={onArchive}
               onClick={() => navigate('/archive')}
-              className={`w-full text-left px-3 py-1.5 rounded-lg text-sm ${onArchive ? 'bg-indigo-50 text-indigo-700 font-medium' : 'text-gray-600 hover:bg-gray-100'}`}
-            >
-              ⊘ Archive
-            </button>
+            />
           </div>
         </div>
 
         {tags.length > 0 && (
           <div>
-            <p className="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-2">Tags</p>
-            <div className="space-y-1">
+            <p className="text-[11px] font-semibold text-neutral-400 uppercase tracking-widest mb-2">Tags</p>
+            <div className="space-y-0.5">
               {tags.map(tag => (
                 <button
                   key={tag.id}
                   onClick={() => setFilter('tag', activeTag === tag.name ? null : tag.name)}
-                  className={`w-full text-left px-3 py-1.5 rounded-lg text-sm flex items-center gap-2 ${activeTag === tag.name ? 'bg-indigo-50 text-indigo-700 font-medium' : 'text-gray-600 hover:bg-gray-100'}`}
+                  className={`w-full text-left px-3 py-1.5 rounded-lg text-sm flex items-center gap-2 transition-colors ${
+                    activeTag === tag.name
+                      ? 'bg-neutral-900 text-white font-medium'
+                      : 'text-neutral-600 hover:bg-neutral-100'
+                  }`}
                 >
                   <span className="w-2 h-2 rounded-full shrink-0" style={{ backgroundColor: tag.color }} />
                   {tag.name}
@@ -89,14 +89,26 @@ export default function FilterSidebar() {
         )}
 
         {hasActiveFilters && (
-          <button
-            onClick={clearFilters}
-            className="text-xs text-gray-400 hover:text-gray-600"
-          >
+          <button onClick={clearFilters} className="text-xs text-neutral-400 hover:text-neutral-700 transition-colors">
             Clear filters
           </button>
         )}
       </div>
     </aside>
+  );
+}
+
+function NavBtn({ label, active, onClick }) {
+  return (
+    <button
+      onClick={onClick}
+      className={`w-full text-left px-3 py-1.5 rounded-lg text-sm transition-colors ${
+        active
+          ? 'bg-neutral-900 text-white font-medium'
+          : 'text-neutral-600 hover:bg-neutral-100'
+      }`}
+    >
+      {label}
+    </button>
   );
 }

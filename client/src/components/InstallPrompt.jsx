@@ -23,17 +23,17 @@ export default function InstallPrompt() {
   }
 
   return (
-    <div className="flex items-center gap-3 bg-indigo-50 border border-indigo-200 rounded-xl px-4 py-3 mb-4 text-sm">
-      <span className="text-indigo-700 flex-1">Install Trace for faster access and offline support.</span>
+    <div className="flex items-center gap-3 bg-neutral-900 rounded-xl px-4 py-3 mb-4 text-sm">
+      <span className="text-neutral-300 flex-1 text-xs">Install Trace for faster access and offline support.</span>
       <button
         onClick={install}
-        className="px-3 py-1.5 bg-indigo-600 text-white rounded-lg text-xs font-medium hover:bg-indigo-700"
+        className="px-3 py-1.5 bg-white text-neutral-900 rounded-lg text-xs font-medium hover:bg-neutral-100 transition-colors"
       >
         Install
       </button>
       <button
         onClick={() => setDismissed(true)}
-        className="text-gray-400 hover:text-gray-600 text-lg leading-none"
+        className="text-neutral-500 hover:text-neutral-300 text-lg leading-none transition-colors"
       >
         ×
       </button>

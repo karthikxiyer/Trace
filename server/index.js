@@ -13,8 +13,13 @@ const PORT = process.env.PORT || 3001;
 
 app.use(cors({
   origin: (origin, cb) => {
-    const allowed = process.env.CLIENT_URL || 'http://localhost:5173';
-    if (!origin || origin === allowed || origin.startsWith('chrome-extension://')) {
+    const allowed = process.env.CLIENT_URL || '';
+    if (
+      !origin ||
+      origin === allowed ||
+      origin.startsWith('chrome-extension://') ||
+      /^http:\/\/localhost:\d+$/.test(origin)
+    ) {
       cb(null, true);
     } else {
       cb(new Error('Not allowed by CORS'));
