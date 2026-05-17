@@ -8,11 +8,11 @@ export default defineConfig({
     VitePWA({
       registerType: 'autoUpdate',
       manifest: {
-        name: 'Trace',
-        short_name: 'Trace',
+        name: 'TRACE',
+        short_name: 'TRACE',
         description: 'Save and organise links from anywhere',
-        theme_color: '#6366f1',
-        background_color: '#f9fafb',
+        theme_color: '#003135',
+        background_color: '#003135',
         display: 'standalone',
         start_url: '/',
         icons: [
