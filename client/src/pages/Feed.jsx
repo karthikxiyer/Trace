@@ -35,13 +35,13 @@ export default function Feed() {
       <SaveLinkForm />
 
       {isLoading && (
-        <div className="space-y-3">
+        <div className="space-y-2.5">
           {[...Array(3)].map((_, i) => <SkeletonCard key={i} />)}
         </div>
       )}
 
       {!isLoading && data?.links?.length === 0 && (
-        <div className="text-center py-20 text-neutral-400">
+        <div className="text-center py-20 text-[#c8c8c8]">
           <p className="text-3xl mb-3">🔗</p>
           <p className="text-sm">No links here yet.</p>
         </div>
@@ -56,15 +56,15 @@ export default function Feed() {
             <button
               onClick={() => setPage(p => Math.max(0, p - 1))}
               disabled={page === 0}
-              className="px-3 py-1.5 text-sm text-neutral-600 border border-neutral-200 rounded-lg disabled:opacity-40 hover:bg-neutral-50 transition-colors"
+              className="px-3 py-1.5 text-sm text-[#4f4f4f] border border-[rgba(0,49,53,0.12)] rounded-lg disabled:opacity-40 hover:bg-[rgba(0,49,53,0.04)] transition-colors"
             >
               ← Prev
             </button>
-            <span className="text-xs text-neutral-400">Page {page + 1}</span>
+            <span className="text-xs text-[#c8c8c8]">Page {page + 1}</span>
             <button
               onClick={() => setPage(p => p + 1)}
               disabled={!data?.hasMore}
-              className="px-3 py-1.5 text-sm text-neutral-600 border border-neutral-200 rounded-lg disabled:opacity-40 hover:bg-neutral-50 transition-colors"
+              className="px-3 py-1.5 text-sm text-[#4f4f4f] border border-[rgba(0,49,53,0.12)] rounded-lg disabled:opacity-40 hover:bg-[rgba(0,49,53,0.04)] transition-colors"
             >
               Next →
             </button>

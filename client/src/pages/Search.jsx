@@ -17,7 +17,7 @@ export default function Search() {
 
   if (!q) {
     return (
-      <div className="text-center py-20 text-neutral-400">
+      <div className="text-center py-20 text-[#c8c8c8]">
         <p className="text-sm">Start typing to search your links.</p>
       </div>
     );
@@ -25,8 +25,8 @@ export default function Search() {
 
   return (
     <div>
-      <p className="text-xs text-neutral-400 mb-4 uppercase tracking-widest">
-        Results for <span className="text-neutral-700 font-medium normal-case tracking-normal">"{q}"</span>
+      <p className="text-xs text-[#c8c8c8] mb-4 uppercase tracking-widest">
+        Results for <span className="text-[#024950] font-medium normal-case tracking-normal">"{q}"</span>
       </p>
 
       {isLoading && (
@@ -36,7 +36,7 @@ export default function Search() {
       )}
 
       {!isLoading && data?.results?.length === 0 && (
-        <div className="text-center py-20 text-neutral-400">
+        <div className="text-center py-20 text-[#c8c8c8]">
           <p className="text-sm">No results found.</p>
         </div>
       )}

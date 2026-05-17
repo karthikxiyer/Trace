@@ -42,31 +42,29 @@ export default function Save() {
     }
   }
 
-  // Auto-save flow (from share target or PWA share)
   if (urlParam) {
     return (
-      <div className="min-h-screen flex flex-col items-center justify-center bg-gray-50 gap-3">
-        <div className="bg-white rounded-2xl shadow-sm border border-gray-200 p-8 w-full max-w-sm text-center">
-          <h1 className="text-xl font-semibold text-gray-900 mb-4">Trace</h1>
-          {status === 'saving' && <p className="text-gray-500 text-sm">Saving link…</p>}
+      <div className="min-h-screen flex flex-col items-center justify-center bg-[#fefefe] gap-3">
+        <div className="bg-white rounded-2xl border border-[rgba(0,49,53,0.08)] p-8 w-full max-w-sm text-center">
+          <h1 className="text-xl font-black tracking-tighter text-[#024950] mb-4">Trace</h1>
+          {status === 'saving' && <p className="text-[#8b8b8b] text-sm">Saving link…</p>}
           {status === 'saved'  && <p className="text-green-600 text-sm font-medium">✓ Saved! Redirecting…</p>}
           {status === 'error'  && (
             <>
               <p className="text-red-500 text-sm mb-4">Failed to save. Try again.</p>
-              <Link to="/" className="text-indigo-600 text-sm hover:underline">Go to feed</Link>
+              <Link to="/" className="text-[#024950] text-sm hover:underline">Go to feed</Link>
             </>
           )}
-          <p className="text-xs text-gray-400 mt-4 break-all">{urlParam}</p>
+          <p className="text-xs text-[#c8c8c8] mt-4 break-all">{urlParam}</p>
         </div>
       </div>
     );
   }
 
-  // Manual save form (no URL param)
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-50">
-      <div className="bg-white rounded-2xl shadow-sm border border-gray-200 p-8 w-full max-w-sm">
-        <h1 className="text-xl font-semibold text-gray-900 mb-6">Save a link</h1>
+    <div className="min-h-screen flex items-center justify-center bg-[#fefefe]">
+      <div className="bg-white rounded-2xl border border-[rgba(0,49,53,0.08)] p-8 w-full max-w-sm">
+        <h1 className="text-xl font-black tracking-tighter text-[#024950] mb-6">Save a link</h1>
         <form onSubmit={handleManualSave} className="space-y-4">
           <input
             type="url"
@@ -74,19 +72,21 @@ export default function Save() {
             onChange={e => setManualUrl(e.target.value)}
             placeholder="https://…"
             required
-            className="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
+            className="w-full px-3 py-2 border border-[rgba(0,49,53,0.12)] rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-[#024950] text-[#060508] placeholder:text-[#c8c8c8]"
           />
           <button
             type="submit"
             disabled={status === 'saving'}
-            className="w-full py-2 bg-indigo-600 hover:bg-indigo-700 text-white text-sm font-medium rounded-lg disabled:opacity-50"
+            className="w-full py-2 bg-[#024950] hover:bg-[#1e3e3a] text-white text-sm font-medium rounded-xl disabled:opacity-50 transition-colors"
           >
             {status === 'saving' ? 'Saving…' : 'Save'}
           </button>
           {status === 'saved' && <p className="text-green-600 text-sm text-center">✓ Saved!</p>}
           {status === 'error'  && <p className="text-red-500 text-sm text-center">Failed to save.</p>}
         </form>
-        <p className="mt-4 text-center"><Link to="/" className="text-sm text-indigo-600 hover:underline">Back to feed</Link></p>
+        <p className="mt-4 text-center">
+          <Link to="/" className="text-sm text-[#024950] hover:underline">Back to feed</Link>
+        </p>
       </div>
     </div>
   );

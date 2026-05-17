@@ -28,7 +28,9 @@ export default function SearchBar({ autoFocus, className }) {
       onChange={e => setValue(e.target.value)}
       placeholder="Search links…"
       autoFocus={autoFocus}
-      className={`px-3 py-1.5 text-sm border border-neutral-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-neutral-900 bg-neutral-50 placeholder:text-neutral-400 ${className ?? 'w-64'}`}
+      className={`px-3 py-1.5 text-sm rounded-lg focus:outline-none focus:ring-2 ${
+        className ?? 'w-64 border border-[rgba(0,49,53,0.12)] bg-[#fefefe] text-[#003135] placeholder:text-[#0FA4AF]/50 focus:ring-[#0FA4AF]'
+      }`}
     />
   );
 }

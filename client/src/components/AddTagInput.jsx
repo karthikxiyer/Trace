@@ -52,7 +52,6 @@ export default function AddTagInput({ link }) {
     },
   });
 
-  // Close on outside click
   useEffect(() => {
     function handler(e) {
       if (ref.current && !ref.current.contains(e.target)) setOpen(false);
@@ -65,42 +64,42 @@ export default function AddTagInput({ link }) {
     <div className="relative" ref={ref}>
       <button
         onClick={() => setOpen(o => !o)}
-        className="text-xs text-gray-400 hover:text-gray-600 px-1.5 py-0.5 rounded border border-dashed border-gray-300 hover:border-gray-400"
+        className="text-xs text-[#c8c8c8] hover:text-[#8b8b8b] px-1.5 py-0.5 rounded border border-dashed border-[rgba(0,49,53,0.15)] hover:border-[rgba(0,49,53,0.25)] transition-colors"
       >
         + tag
       </button>
 
       {open && (
-        <div className="absolute left-0 top-6 z-20 w-52 bg-white border border-gray-200 rounded-xl shadow-lg p-2">
+        <div className="absolute left-0 top-6 z-20 w-52 bg-white border border-[rgba(0,49,53,0.10)] rounded-xl shadow-lg p-2">
           <input
             autoFocus
             value={input}
             onChange={e => setInput(e.target.value)}
             placeholder="Search or create…"
-            className="w-full px-2 py-1 text-xs border border-gray-200 rounded-lg mb-2 focus:outline-none focus:ring-1 focus:ring-indigo-400"
+            className="w-full px-2 py-1 text-xs border border-[rgba(0,49,53,0.10)] rounded-lg mb-2 focus:outline-none focus:ring-1 focus:ring-[#024950] text-[#060508] placeholder:text-[#c8c8c8]"
           />
           <div className="max-h-40 overflow-y-auto space-y-0.5">
             {filtered.map(tag => (
               <button
                 key={tag.id}
                 onClick={() => appliedIds.has(tag.id) ? removeMutation.mutate(tag.id) : addMutation.mutate(tag.id)}
-                className="flex items-center gap-2 w-full px-2 py-1 rounded-lg hover:bg-gray-50 text-xs text-left"
+                className="flex items-center gap-2 w-full px-2 py-1 rounded-lg hover:bg-[rgba(0,49,53,0.04)] text-xs text-left"
               >
                 <span className="w-2 h-2 rounded-full shrink-0" style={{ backgroundColor: tag.color }} />
-                <span className="flex-1">{tag.name}</span>
-                {appliedIds.has(tag.id) && <span className="text-indigo-500">✓</span>}
+                <span className="flex-1 text-[#024950]">{tag.name}</span>
+                {appliedIds.has(tag.id) && <span className="text-[#024950]">✓</span>}
               </button>
             ))}
             {canCreate && (
               <button
                 onClick={() => createMutation.mutate(input.trim())}
-                className="flex items-center gap-2 w-full px-2 py-1 rounded-lg hover:bg-indigo-50 text-xs text-indigo-600"
+                className="flex items-center gap-2 w-full px-2 py-1 rounded-lg hover:bg-[rgba(39,78,73,0.06)] text-xs text-[#024950]"
               >
                 + Create "{input.trim()}"
               </button>
             )}
             {!filtered.length && !canCreate && (
-              <p className="text-xs text-gray-400 px-2 py-1">No tags found</p>
+              <p className="text-xs text-[#c8c8c8] px-2 py-1">No tags found</p>
             )}
           </div>
         </div>
