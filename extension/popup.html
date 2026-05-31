@@ -2,78 +2,167 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;900&display=swap" rel="stylesheet" />
   <style>
-    * { box-sizing: border-box; margin: 0; padding: 0; }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
     body {
-      width: 280px;
-      padding: 16px;
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      width: 300px;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
       font-size: 14px;
-      color: #111827;
-      background: #fff;
+      color: #003135;
+      background: #f0f8f9;
+      -webkit-font-smoothing: antialiased;
     }
-    h1 { font-size: 16px; font-weight: 600; margin-bottom: 14px; color: #6366f1; }
+
+    /* ── Header ── */
+    header {
+      background: #003135;
+      padding: 14px 16px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    header img {
+      width: 32px;
+      height: 32px;
+      border-radius: 8px;
+      object-fit: cover;
+    }
+    header span {
+      font-size: 20px;
+      font-weight: 900;
+      letter-spacing: -0.05em;
+      color: #AFDDE5;
+      line-height: 1;
+    }
+
+    /* ── Body ── */
+    .body {
+      padding: 20px 16px 18px;
+    }
+
+    /* ── Labels ── */
+    label {
+      display: block;
+      font-size: 11px;
+      font-weight: 500;
+      color: #024950;
+      margin-bottom: 5px;
+      letter-spacing: 0.01em;
+    }
+
+    /* ── Inputs ── */
     input {
       width: 100%;
-      padding: 8px 10px;
-      border: 1px solid #d1d5db;
-      border-radius: 8px;
+      padding: 9px 11px;
+      border: 1px solid rgba(0,49,53,0.15);
+      border-radius: 10px;
+      font-family: inherit;
       font-size: 13px;
-      margin-bottom: 8px;
+      color: #003135;
+      background: #fff;
       outline: none;
+      margin-bottom: 12px;
+      transition: border-color 0.15s, box-shadow 0.15s;
     }
-    input:focus { border-color: #6366f1; box-shadow: 0 0 0 2px #e0e7ff; }
+    input:focus {
+      border-color: #0FA4AF;
+      box-shadow: 0 0 0 2px rgba(15,164,175,0.18);
+    }
+    input::placeholder { color: #c8c8c8; }
+
+    /* ── Primary button ── */
     button {
       width: 100%;
-      padding: 8px 12px;
-      background: #6366f1;
+      padding: 9px 12px;
+      background: #024950;
       color: #fff;
       border: none;
-      border-radius: 8px;
+      border-radius: 10px;
+      font-family: inherit;
       font-size: 13px;
       font-weight: 500;
       cursor: pointer;
+      transition: background 0.15s;
     }
-    button:hover { background: #4f46e5; }
+    button:hover { background: #003135; }
     button:disabled { opacity: 0.5; cursor: default; }
-    #error { color: #ef4444; font-size: 12px; margin-top: 8px; }
-    #status { font-size: 13px; margin: 10px 0; color: #374151; }
-    #current-url {
-      font-size: 12px;
-      color: #6b7280;
-      margin-bottom: 12px;
-      word-break: break-all;
-      line-height: 1.4;
-      max-height: 48px;
-      overflow: hidden;
-    }
+
+    /* ── Sign out button ── */
     #logout-btn {
-      margin-top: 8px;
+      margin-top: 10px;
       background: transparent;
-      color: #9ca3af;
+      color: #8b8b8b;
       font-size: 12px;
-      border: 1px solid #e5e7eb;
+      border: 1px solid rgba(0,49,53,0.12);
     }
-    #logout-btn:hover { background: #f9fafb; color: #374151; }
-    .success { color: #16a34a; }
+    #logout-btn:hover { background: rgba(0,49,53,0.04); color: #024950; }
+
+    /* ── Status / error ── */
+    #error {
+      color: #ef4444;
+      font-size: 12px;
+      margin-top: 8px;
+    }
+    #status {
+      font-size: 13px;
+      margin-top: 10px;
+      text-align: center;
+    }
+    .success { color: #16a34a; font-weight: 500; }
     .error-msg { color: #ef4444; }
+
+    /* ── URL preview ── */
+    #current-url {
+      font-size: 11px;
+      color: #8b8b8b;
+      margin-bottom: 14px;
+      word-break: break-all;
+      line-height: 1.5;
+      max-height: 42px;
+      overflow: hidden;
+      background: rgba(0,49,53,0.04);
+      border-radius: 8px;
+      padding: 6px 8px;
+    }
+
+    /* ── Divider ── */
+    .divider {
+      height: 1px;
+      background: rgba(0,49,53,0.07);
+      margin: 0;
+    }
   </style>
 </head>
 <body>
-  <h1>Trace</h1>
 
-  <div id="login-view">
-    <input type="email" id="email" placeholder="Email" autocomplete="email" />
-    <input type="password" id="password" placeholder="Password" />
-    <button id="login-btn">Sign in</button>
-    <p id="error"></p>
-  </div>
+  <header>
+    <img src="icons/icon128.png" alt="" />
+    <span>TRACE</span>
+  </header>
+  <div class="divider"></div>
 
-  <div id="save-view" style="display:none">
-    <p id="current-url"></p>
-    <button id="save-btn">Save this page</button>
-    <p id="status"></p>
-    <button id="logout-btn">Sign out</button>
+  <div class="body">
+
+    <div id="login-view">
+      <label for="email">Email</label>
+      <input type="email" id="email" placeholder="you@example.com" autocomplete="email" />
+      <label for="password">Password</label>
+      <input type="password" id="password" placeholder="••••••••" />
+      <button id="login-btn">Sign in</button>
+      <p id="error"></p>
+    </div>
+
+    <div id="save-view" style="display:none">
+      <p id="current-url"></p>
+      <button id="save-btn">Save this page</button>
+      <p id="status"></p>
+      <button id="logout-btn">Sign out</button>
+    </div>
+
   </div>
 
   <script src="popup.js"></script>
