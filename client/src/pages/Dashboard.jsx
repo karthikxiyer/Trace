@@ -30,10 +30,16 @@ export default function Dashboard() {
           </div>
         ) : (
           <>
-            <div className="flex-1 flex items-center justify-center px-4">
+            <div className="flex-1 flex items-center justify-center gap-3 px-4">
+              <img
+                src="/logo.jpeg"
+                alt=""
+                className="rounded-xl object-cover"
+                style={{ height: 'clamp(1.8rem, 10vh, 10vh)', width: 'clamp(1.8rem, 10vh, 10vh)' }}
+              />
               <span
                 className="font-black tracking-tighter leading-none text-[#AFDDE5] select-none"
-                style={{ fontSize: 'clamp(2rem, 14vh, 14vh)' }}
+                style={{ fontSize: 'clamp(2rem, 10vh, 10vh)' }}
               >
                 TRACE
               </span>

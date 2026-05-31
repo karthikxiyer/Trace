@@ -28,8 +28,9 @@ export default function Login() {
     <div className="min-h-screen flex">
       {/* Brand panel — hidden on mobile */}
       <div className="hidden md:flex flex-col justify-between w-2/5 bg-[#003135] px-10 py-12 text-white overflow-hidden">
-        <div className="flex-1 flex items-center">
-          <span className="text-[10vw] font-black tracking-tighter leading-none text-[#AFDDE5] select-none">
+        <div className="flex-1 flex flex-col items-start justify-center gap-6">
+          <img src="/logo.jpeg" alt="TRACE" className="w-[10vw] min-w-[80px] rounded-2xl" />
+          <span className="text-[6vw] font-black tracking-tighter leading-none text-[#AFDDE5] select-none">
             TRACE
           </span>
         </div>
@@ -48,7 +49,8 @@ export default function Login() {
       <div className="flex-1 flex flex-col items-center justify-center bg-[#f0f8f9] px-6 py-12">
         {/* Mobile wordmark + tagline */}
         <div className="md:hidden mb-8 w-full max-w-sm">
-          <p className="text-[20vw] font-black tracking-tighter leading-none text-[#003135] mb-4">
+          <img src="/logo.jpeg" alt="TRACE" className="w-16 h-16 rounded-xl mb-3 object-cover" />
+          <p className="text-[14vw] font-black tracking-tighter leading-none text-[#003135] mb-4">
             TRACE
           </p>
           <p className="text-sm text-[#024950] leading-relaxed">
