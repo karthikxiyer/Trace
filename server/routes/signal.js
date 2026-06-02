@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import verifyToken from '../middleware/auth.js';
+import { verifyToken } from '../middleware/auth.js';
 import pool from '../db/index.js';
 
 const router = Router();
