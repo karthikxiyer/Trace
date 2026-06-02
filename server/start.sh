@@ -14,7 +14,7 @@ fi
 
 # Start signal-cli in background, inheriting stdout/stderr so errors appear in Render logs
 signal-cli \
-  --config /signal-data \
+  -d /signal-data \
   -a "$SIGNAL_PHONE_NUMBER" \
   jsonRpc \
   --http \
