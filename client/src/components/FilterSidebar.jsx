@@ -26,6 +26,7 @@ export default function FilterSidebar() {
   const activeTag = searchParams.get('tag');
   const starred = searchParams.get('starred') === 'true';
   const unread = searchParams.get('unread') === 'true';
+  const signalOnly = searchParams.get('content_type') === 'signal';
   const onFeed = location.pathname === '/';
   const onArchive = location.pathname === '/archive';
 
@@ -44,7 +45,7 @@ export default function FilterSidebar() {
     setSearchParams({});
   }
 
-  const hasActiveFilters = activeTag || starred || unread || onArchive;
+  const hasActiveFilters = activeTag || starred || unread || signalOnly || onArchive;
 
   return (
     <aside className="w-44 shrink-0">
@@ -55,6 +56,7 @@ export default function FilterSidebar() {
             <NavBtn label="All links" active={onFeed && !hasActiveFilters} onClick={() => { navigate('/'); setSearchParams({}); }} />
             <NavBtn label="★  Starred" active={starred} onClick={() => setFilter('starred', starred ? null : 'true')} />
             <NavBtn label="○  Unread" active={unread} onClick={() => setFilter('unread', unread ? null : 'true')} />
+            <NavBtn label="📨  Signal" active={signalOnly} onClick={() => setFilter('content_type', signalOnly ? null : 'signal')} />
             <NavBtn label="Archive" active={onArchive} onClick={() => navigate('/archive')} />
           </div>
         </div>

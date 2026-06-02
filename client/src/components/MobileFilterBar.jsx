@@ -26,9 +26,10 @@ export default function MobileFilterBar() {
   const activeTag = searchParams.get('tag');
   const starred = searchParams.get('starred') === 'true';
   const unread = searchParams.get('unread') === 'true';
+  const signalOnly = searchParams.get('content_type') === 'signal';
   const onArchive = location.pathname === '/archive';
   const onFeed = location.pathname === '/';
-  const hasActiveFilters = activeTag || starred || unread || onArchive;
+  const hasActiveFilters = activeTag || starred || unread || signalOnly || onArchive;
 
   function setFilter(key, value) {
     if (location.pathname !== '/') navigate('/');
@@ -46,6 +47,7 @@ export default function MobileFilterBar() {
         <Chip label="All" active={onFeed && !hasActiveFilters} onClick={() => { navigate('/'); setSearchParams({}); }} />
         <Chip label="★ Starred" active={starred} onClick={() => setFilter('starred', starred ? null : 'true')} />
         <Chip label="Unread" active={unread} onClick={() => setFilter('unread', unread ? null : 'true')} />
+        <Chip label="📨 Signal" active={signalOnly} onClick={() => setFilter('content_type', signalOnly ? null : 'signal')} />
         <Chip label="Archive" active={onArchive} onClick={() => navigate('/archive')} />
         {tags.map(tag => {
           const isActive = activeTag === tag.name;

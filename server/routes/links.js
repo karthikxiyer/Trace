@@ -38,7 +38,7 @@ router.post('/', async (req, res) => {
 // GET /api/links
 router.get('/', async (req, res) => {
   const page = Math.max(0, parseInt(req.query.page) || 0);
-  const { tag, starred, archived, unread } = req.query;
+  const { tag, starred, archived, unread, content_type } = req.query;
   const limit = 20;
   const offset = page * limit;
 
@@ -49,6 +49,7 @@ router.get('/', async (req, res) => {
     starred === 'true' ? 'starred' : '',
     unread === 'true' ? 'unread' : '',
     tag ? `tag=${tag}` : '',
+    content_type ? `content_type=${content_type}` : '',
   ].filter(Boolean).join(':');
   const cacheKey = `links:${req.user.id}:${filterParts}`;
 
@@ -67,6 +68,7 @@ router.get('/', async (req, res) => {
 
   if (starred === 'true') conditions.push('l.starred = true');
   if (unread === 'true') conditions.push('l.read = false');
+  if (content_type) { conditions.push(`l.content_type = $${idx}`); values.push(content_type); idx++; }
 
   if (tag) {
     conditions.push(

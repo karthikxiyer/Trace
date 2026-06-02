@@ -7,6 +7,7 @@ import Search from './pages/Search';
 import Archive from './pages/Archive';
 import Save from './pages/Save';
 import ReaderView from './pages/ReaderView';
+import SignalAuth from './pages/SignalAuth';
 import ProtectedRoute from './components/ProtectedRoute';
 
 export default function App() {
@@ -15,6 +16,7 @@ export default function App() {
       <Route path="/login" element={<Login />} />
       <Route path="/register" element={<Register />} />
       <Route path="/save" element={<Save />} />
+      <Route path="/auth/signal" element={<SignalAuth />} />
       <Route path="/reader/:id" element={<ProtectedRoute><ReaderView /></ProtectedRoute>} />
       <Route
         element={

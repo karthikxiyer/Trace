@@ -100,6 +100,16 @@ export default function Login() {
             No account?{' '}
             <Link to="/register" className="text-[#0FA4AF] font-medium hover:underline">Register</Link>
           </p>
+
+          {import.meta.env.VITE_SIGNAL_BOT_NUMBER && (
+            <div className="mt-6 pt-6 border-t border-[rgba(0,49,53,0.08)] text-center">
+              <p className="text-xs text-[#8b8b8b] mb-1">Or sign in via Signal</p>
+              <p className="text-xs text-[#024950]">
+                Send <span className="font-mono font-medium">login</span> to{' '}
+                <span className="font-medium">{import.meta.env.VITE_SIGNAL_BOT_NUMBER}</span>
+              </p>
+            </div>
+          )}
         </div>
       </div>
     </div>

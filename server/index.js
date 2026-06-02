@@ -5,6 +5,9 @@ import authRouter from './routes/auth.js';
 import linksRouter from './routes/links.js';
 import tagsRouter from './routes/tags.js';
 import searchRouter from './routes/search.js';
+import signalRouter from './routes/signal.js';
+import signalAuthRouter from './routes/signalAuth.js';
+import { startPolling } from './services/signalPoller.js';
 
 dotenv.config();
 
@@ -30,8 +33,13 @@ app.use(express.json());
 
 app.get('/health', (_req, res) => res.json({ status: 'ok' }));
 app.use('/api/auth', authRouter);
+app.use('/api/auth/signal', signalAuthRouter);
 app.use('/api/links', linksRouter);
 app.use('/api/tags', tagsRouter);
 app.use('/api/search', searchRouter);
+app.use('/api/signal', signalRouter);
 
-app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
+  startPolling(3000);
+});

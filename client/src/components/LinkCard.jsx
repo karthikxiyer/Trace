@@ -86,6 +86,11 @@ export default function LinkCard({ link }) {
           <div className="flex items-center gap-1.5 mt-2 flex-wrap">
             <span className="text-xs bg-[rgba(0,49,53,0.05)] text-[#8b8b8b] px-2 py-0.5 rounded-full">{link.domain}</span>
             <span className="text-xs text-[#c8c8c8]">{timeAgo(link.created_at)}</span>
+            {link.content_type === 'signal' && (
+              <span title="Saved via Signal" className="text-xs bg-[rgba(15,164,175,0.1)] text-[#0FA4AF] px-2 py-0.5 rounded-full font-medium">
+                Signal
+              </span>
+            )}
             {(link.tags || []).map(tag => (
               <TagBadge key={tag.id} tag={tag} onRemove={t => removeTag.mutate(t.id)} />
             ))}

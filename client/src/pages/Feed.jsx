@@ -16,6 +16,7 @@ export default function Feed() {
   if (searchParams.get('tag')) filters.tag = searchParams.get('tag');
   if (searchParams.get('starred') === 'true') filters.starred = 'true';
   if (searchParams.get('unread') === 'true') filters.unread = 'true';
+  if (searchParams.get('content_type')) filters.content_type = searchParams.get('content_type');
 
   const [pollInterval, setPollInterval] = useState(false);
 
