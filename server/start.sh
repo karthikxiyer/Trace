@@ -1,8 +1,8 @@
 #!/bin/sh
-# Restore signal-cli credentials from env var (free-plan alternative to persistent disk)
-if [ -n "$SIGNAL_DATA_B64" ]; then
+# Restore signal-cli credentials from secret file (avoids env var size limits)
+if [ -f /etc/secrets/signal_data.b64 ]; then
   mkdir -p /signal-data
-  echo "$SIGNAL_DATA_B64" | base64 -d | tar xzf - -C /signal-data
+  base64 -d /etc/secrets/signal_data.b64 | tar xzf - -C /signal-data
 fi
 
 signal-cli \
