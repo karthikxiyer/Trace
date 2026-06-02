@@ -12,6 +12,5 @@ COPY package*.json ./
 RUN npm ci --production
 COPY . .
 
-VOLUME /signal-data
 EXPOSE 3001
 CMD ["sh", "start.sh"]
