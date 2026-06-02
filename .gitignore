@@ -21,3 +21,6 @@ Thumbs.db
 # Editor
 .vscode/
 .idea/
+
+# Signal bot credentials — never commit these
+Secrets/
