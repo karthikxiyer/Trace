@@ -1,8 +1,10 @@
 #!/bin/sh
-# Restore signal-cli credentials from secret file (avoids env var size limits)
-if [ -f /etc/secrets/signal_data.b64 ]; then
+# Restore signal-cli credentials from split secret files
+if ls /etc/secrets/signal_part_*.b64 > /dev/null 2>&1; then
   mkdir -p /signal-data
-  base64 -d /etc/secrets/signal_data.b64 | tar xzf - -C /signal-data
+  for f in $(ls /etc/secrets/signal_part_*.b64 | sort); do
+    base64 -d "$f"
+  done | tar xzf - -C /signal-data
 fi
 
 signal-cli \
