@@ -9,8 +9,9 @@ export default function Archive() {
   const token = localStorage.getItem('token');
 
   const { data, isLoading } = useQuery({
-    queryKey: ['links', 'archive', page],
-    queryFn: () => getLinks(token, page, { archived: true }),
+    queryKey: ['links', 'archive', token, page],
+    queryFn: () => getLinks(localStorage.getItem('token'), page, { archived: true }),
+    enabled: !!token,
   });
 
   return (

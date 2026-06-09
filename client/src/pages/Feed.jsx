@@ -21,8 +21,9 @@ export default function Feed() {
   const [pollInterval, setPollInterval] = useState(false);
 
   const { data, isLoading } = useQuery({
-    queryKey: ['links', page, filters],
-    queryFn: () => getLinks(token, page, filters),
+    queryKey: ['links', token, page, filters],
+    queryFn: () => getLinks(localStorage.getItem('token'), page, filters),
+    enabled: !!token,
     refetchInterval: pollInterval,
   });
 
